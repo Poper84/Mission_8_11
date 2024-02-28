@@ -6,11 +6,13 @@ namespace Mission_8_11.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        // Make an instance of the context
+        private ICoolDataRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
+        // Make the constructor so we can use repository pattern
+        public HomeController(ICoolDataRepository temp) 
         {
-            _logger = logger;
+            _repo = temp;
         }
 
         public IActionResult Index()
@@ -18,15 +20,28 @@ namespace Mission_8_11.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        // Get action for the NewTask View
+        [HttpGet]
+        public IActionResult NewTask()
         {
-            return View();
+            // Make a view bag for getting the categories
+            ViewBag.Categories = _repo.Categories.ToList();
+
+            // return the view with a new Stat model so the TaskId defaults to 0 for a new entry
+            return View(new Stat());
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // Post action for the NewTask View
+        [HttpPost]
+        public IActionResult NewTask(Stat task) 
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid)
+            {
+                _repo.AddTask(task);
+            }
+
+            return View(new Stat());
+
         }
     }
 }
