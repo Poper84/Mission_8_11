@@ -1,0 +1,49 @@
+﻿
+@model Stat
+
+<h1>Add a New Task</h1>
+<form method="post">
+    <input type="hidden" asp-for="TaskId" />
+
+    <!-- New Task input fields-->
+    <label asp-for="TaskName">Task:</label>
+    <input asp-for="TaskName" />
+
+    <br />
+
+    <label asp-for="DueDate">Due Date:</label>
+
+    <br />
+
+    <select asp-for="Quadrant">
+        <option value="">Pick a Quadrant</option>
+        <option value="Quadrant1">Quadrant 1</option>
+        <option value="Quadrant2">Quadrant 2</option>
+        <option value="Quadrant3">Quadrant 3</option>
+        <option value="Quadrant4">Quadrant 4</option>
+    </select>
+
+    <br />
+
+    <select asp-for="Category">Category
+        <option value="">Pick a Category</option>
+        <option value="Home">Home</option>
+        <option value="School">School</option>
+        <option value="Work">Work</option>
+        <option value="Church">Church</option>
+    </select>
+
+    <br />
+
+    <select asp-for="Completed">Completed
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+    </select>
+    
+    <br />
+
+    <button type="submit">Submit</button>
+       
+        
+
+</form>
