@@ -32,7 +32,7 @@ namespace Mission_8_11.Controllers
         }
 
         // Post action for the NewTask View
-
+        [HttpPost]
         public IActionResult NewTask(Stat s)
         {
             if (ModelState.IsValid) 
