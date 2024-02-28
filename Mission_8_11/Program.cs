@@ -11,6 +11,8 @@ builder.Services.AddDbContext<CoolDataContext>(options =>
     options.UseSqlite(builder.Configuration["ConnectionStrings:BlahConnection"]);
 });
 
+builder.Services.AddScoped<IStatsRepository, EFStatsRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

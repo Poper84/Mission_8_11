@@ -14,10 +14,10 @@ namespace Mission_8_11.Controllers
         {
             _repo = temp;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(new Stat());
         }
 
         // Get action for the NewTask View
@@ -31,17 +31,13 @@ namespace Mission_8_11.Controllers
             return View(new Stat());
         }
 
-        // Post action for the NewTask View
-        [HttpPost]
-        public IActionResult NewTask(Stat task) 
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
         {
-            if (ModelState.IsValid)
-            {
-                _repo.AddTask(task);
-            }
-
-            return View(new Stat());
-
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
     }
 }
