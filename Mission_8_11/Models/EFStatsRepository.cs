@@ -11,6 +11,7 @@ namespace Mission_8_11.Models
         _context = temp;
         }
         public List<Stat> Stats => _context.Stats.ToList();
+        public List<Category> Categories => _context.Categories.ToList();
 
         public void AddStat(Stat stat)
         {

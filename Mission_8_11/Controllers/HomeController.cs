@@ -7,17 +7,17 @@ namespace Mission_8_11.Controllers
     public class HomeController : Controller
     {
         // Make an instance of the context
-        private ICoolDataRepository _repo;
+        private IStatsRepository _repo;
 
         // Make the constructor so we can use repository pattern
-        public HomeController(ICoolDataRepository temp) 
+        public HomeController(IStatsRepository temp) 
         {
             _repo = temp;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            return View(new Stat());
+            return View();
         }
 
         // Get action for the NewTask View
@@ -31,13 +31,16 @@ namespace Mission_8_11.Controllers
             return View(new Stat());
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        // Post action for the NewTask View
+
+        public IActionResult NewTask(Stat s)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            if (ModelState.IsValid) 
+            {
+                _repo.AddStat(s);
+            }
+
+            return View(new Stat());
         }
-
-
-
     }
 }
