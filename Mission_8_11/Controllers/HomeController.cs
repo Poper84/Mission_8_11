@@ -6,27 +6,31 @@ namespace Mission_8_11.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private IStatsRepository _repo;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
+        public HomeController(IStatsRepository temp) 
+        { 
+            _repo = temp;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View(new Stat());
+        }
+        [HttpPost]
+        public IActionResult Index(Stat s) 
+        {
+            if (ModelState.IsValid) 
+            {
+                _repo.AddStat(s);
+            
+            }
+
+            return View(new Stat());
+        
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
     }
 }
