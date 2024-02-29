@@ -2,9 +2,10 @@
 {
     public interface IStatsRepository
     {
-        List<Stat> Stats { get; }
-        List<Category> Categories { get; }
+        IQueryable<Stat> Stats { get; }
+        IQueryable<Category> Categories { get; }
 
+        public IQueryable<Stat> GetStatsWithCategory();
         public void AddStat(Stat stat);
     }
 }

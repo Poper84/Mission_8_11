@@ -1,6 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Mission_8_11.Models;
-using System.Diagnostics;
 
 namespace Mission_8_11.Controllers
 {
@@ -18,7 +18,7 @@ namespace Mission_8_11.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var tasks = _repo.Stats.ToList();
+            var tasks = _repo.GetStatsWithCategory().ToList();
 
             return View(tasks);
         }
