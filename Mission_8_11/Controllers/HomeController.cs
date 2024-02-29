@@ -50,16 +50,16 @@ namespace Mission_8_11.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var RecordToEdit = _repo.Stats.Where(x => x.TaskId == id);
+            var recordToEdit = _repo.Stats.Single(x => x.TaskId == id);
 
-            return View("NewTask", RecordToEdit);
+            return View("NewTask", recordToEdit);
         }
 
         // Post action for Edit
         [HttpPost]
-        public IActionResult Edit(Stat s)
+        public IActionResult Edit(Stat updatedTask)
         {
-            //_repo.EditStat(s);
+            //_repo.EditStat(updatedTask);
 
             return RedirectToAction("Index");
         }
@@ -67,15 +67,15 @@ namespace Mission_8_11.Controllers
         // Get Action for Delete
         public IActionResult Delete(int id)
         {
-            var RecordToDelete = _repo.Stats.Where(x => x.TaskId == id);
+            var recordToDelete = _repo.Stats.Single(x => x.TaskId == id);
 
-            return View(RecordToDelete);
+            return View(recordToDelete);
         }
 
         // Post action for Delete
-        public IActionResult Delete(Stat s)
+        public IActionResult Delete(Stat deletedTask)
         {
-            // _repo.DeleteStat(s);
+            // _repo.DeleteStat(deletedTask);
 
             return RedirectToAction("Index");
         }
