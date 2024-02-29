@@ -2,7 +2,264 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Time Management Table!</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .matrix {
+            border: solid 2px #000;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .matrix-header {
+            background-color: #f7f5d1;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            border-bottom: solid 2px #000;
+        }
+
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+            .matrix-table th {
+                background-color: #f7f5d1;
+                padding: 10px;
+                border: solid 2px #000;
+                color: black;
+            }
+
+            .matrix-table td {
+                border: solid 2px #000;
+                padding: 10px;
+                vertical-align: top;
+            }
+
+        .important {
+            background-color: #fff8dc;
+        }
+
+        .not-important {
+            background-color: #f5f5f5;
+        }
+
+        .urgent {
+            background-color: #ffebcd;
+        }
+
+        .not-urgent {
+            background-color: #f0e68c;
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix">
+        <div class="matrix-header">
+            Stephen Covey's Time Management Matrix
+            <a class="btn btn-default" asp-area="" asp-controller="Home" asp-action="NewTask" style="border: 2px solid #000000; /* Black outline */ padding: 5px; /* Optional: Adjusts spacing inside the button */">Add A Task</a>
+        </div>
+        <table class="matrix-table">
+            <tr>
+                <th></th>
+                <th>Urgent</th>
+                <th>Not Urgent</th>
+            </tr>
+            <tr>
+                <td class="important">Important</td>
+                <td class="important urgent">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mb-3">Urgent/Important</h2>
+                                <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Task ID</th>
+                                            <th>Task Name</th>
+                                            <th>Due Date</th>
+                                            <th>Quadrant</th>
+                                            <th>Category Id</th>
+                                            <th>Completed</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var temp in Model)
+                                        {
+                                            if (temp.Quadrant == 1 && temp.Completed == false)
+                                            {
+                                                <tr>
+                                                    <td>@temp.TaskId</td>
+                                                    <td>@temp.TaskName</td>
+                                                    <td>@temp.DueDate</td>
+                                                    <td>@temp.Quadrant</td>
+                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.Completed</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Action Buttons">
+                                                            <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.TaskId">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="important not-urgent">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mb-3">Not Urgent/Important</h2>
+                                <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Task ID</th>
+                                            <th>Task Name</th>
+                                            <th>Due Date</th>
+                                            <th>Quadrant</th>
+                                            <th>Category Name</th>
+                                            <th>Completed</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var temp in Model)
+                                        {
+                                            if (temp.Quadrant == 2 && temp.Completed == false)
+                                            {
+                                                <tr>
+                                                    <td>@temp.TaskId</td>
+                                                    <td>@temp.TaskName</td>
+                                                    <td>@temp.DueDate</td>
+                                                    <td>@temp.Quadrant</td>
+                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.Completed</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Action Buttons">
+                                                            <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.TaskId">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="not-important">Not Important</td>
+                <td class="not-important urgent">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mb-3">Urgent/Not Important</h2>
+                                <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Task ID</th>
+                                            <th>Task Name</th>
+                                            <th>Due Date</th>
+                                            <th>Quadrant</th>
+                                            <th>Category Name</th>
+                                            <th>Completed</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var temp in Model)
+                                        {
+                                            if (temp.Quadrant == 3 && temp.Completed == false)
+                                            {
+                                                <tr>
+                                                    <td>@temp.TaskId</td>
+                                                    <td>@temp.TaskName</td>
+                                                    <td>@temp.DueDate</td>
+                                                    <td>@temp.Quadrant</td>
+                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.Completed</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Action Buttons">
+                                                            <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.TaskId">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="not-important not-urgent">
+                    <div class="container mt-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="mb-3">Not Important/Not Urgent</h2>
+                                <table class="table table-bordered table-hover table-responsive-sm table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>Job ID</th>
+                                            <th>Job Name</th>
+                                            <th>Due Date</th>
+                                            <th>Quadrant</th>
+                                            <th>Category Name</th>
+                                            <th>Completed</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var temp in Model)
+                                        {
+                                            if (temp.Quadrant == 4 && temp.Completed == false)
+                                            {
+                                                <tr>
+                                                    <td>@temp.TaskId</td>
+                                                    <td>@temp.TaskName</td>
+                                                    <td>@temp.DueDate</td>
+                                                    <td>@temp.Quadrant</td>
+                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.Completed</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group" aria-label="Action Buttons">
+                                                            <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
+                                                            <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.TaskId">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+
+
+
