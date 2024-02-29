@@ -18,9 +18,9 @@ namespace Mission_8_11.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var Tasks = _repo.Stats.ToList();
+            var tasks = _repo.Stats.ToList();
 
-            return View(Tasks);
+            return View(tasks);
         }
 
         // Get action for the NewTask View
