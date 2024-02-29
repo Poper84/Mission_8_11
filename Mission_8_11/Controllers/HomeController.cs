@@ -43,7 +43,41 @@ namespace Mission_8_11.Controllers
                 _repo.AddStat(s);
             }
 
-            return View(new Stat());
+            return View("Confirmation");
         }
-    }
+
+        // Get action for Edit
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var RecordToEdit = _repo.Stats.Where(x => x.TaskId == id);
+
+            return View("NewTask", RecordToEdit);
+        }
+
+        // Post action for Edit
+        [HttpPost]
+        public IActionResult Edit(Stat s)
+        {
+            //_repo.EditStat(s);
+
+            return RedirectToAction("Index");
+        }
+
+        // Get Action for Delete
+        public IActionResult Delete(int id)
+        {
+            var RecordToDelete = _repo.Stats.Where(x => x.TaskId == id);
+
+            return View(RecordToDelete);
+        }
+
+        // Post action for Delete
+        public IActionResult Delete(Stat s)
+        {
+            // _repo.DeleteStat(s);
+
+            return RedirectToAction("Index");
+        }
+    }   
 }
