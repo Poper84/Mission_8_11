@@ -14,10 +14,13 @@ namespace Mission_8_11.Controllers
         {
             _repo = temp;
         }
+
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var Tasks = _repo.Stats.ToList();
+
+            return View(Tasks);
         }
 
         // Get action for the NewTask View
