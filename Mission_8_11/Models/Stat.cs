@@ -9,7 +9,7 @@ public partial class Stat
 
     public string TaskName { get; set; } = null!;
 
-    public DateTime? DueDate { get; set; }
+    public int? DueDate { get; set; }
 
     public string Quadrant { get; set; } = null!;
 

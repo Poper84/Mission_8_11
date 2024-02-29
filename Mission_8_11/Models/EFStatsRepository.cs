@@ -8,7 +8,7 @@ namespace Mission_8_11.Models
         private CoolDataContext _context;
         public EFStatsRepository(CoolDataContext temp) 
         {
-            _context = temp;
+        _context = temp;
         }
         public List<Stat> Stats => _context.Stats.ToList();
         public List<Category> Categories => _context.Categories.ToList();
