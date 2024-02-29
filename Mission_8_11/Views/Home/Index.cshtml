@@ -95,14 +95,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant1" && temp.Completed == 1)
+                                            if (temp.Quadrant == "Quadrant1" && temp.Completed == 0)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.CategoryName</td>
+                                                    <td>@temp.Category.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -139,14 +139,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant2" && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant2" && temp.Completed == 0)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.CategoryName</td>
+                                                    <td>@temp.Category.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -186,14 +186,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant3" && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant3" && temp.Completed == 0)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.CategoryName</td>
+                                                    <td>@temp.Category.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -230,7 +230,7 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == 4 && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant4" && temp.Completed == 1)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
