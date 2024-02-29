@@ -18,9 +18,9 @@ namespace Mission_8_11.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var Tasks = _repo.Stats.ToList();
+            var tasks = _repo.Stats.ToList();
 
-            return View(Tasks);
+            return View(tasks);
         }
 
         // Get action for the NewTask View
@@ -43,7 +43,41 @@ namespace Mission_8_11.Controllers
                 _repo.AddStat(s);
             }
 
-            return View(new Stat());
+            return View("Confirmation");
         }
-    }
+
+        // Get action for Edit
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var recordToEdit = _repo.Stats.Single(x => x.TaskId == id);
+
+            return View("NewTask", recordToEdit);
+        }
+
+        // Post action for Edit
+        [HttpPost]
+        public IActionResult Edit(Stat updatedTask)
+        {
+            //_repo.EditStat(updatedTask);
+
+            return RedirectToAction("Index");
+        }
+
+        // Get Action for Delete
+        public IActionResult Delete(int id)
+        {
+            var recordToDelete = _repo.Stats.Single(x => x.TaskId == id);
+
+            return View(recordToDelete);
+        }
+
+        // Post action for Delete
+        public IActionResult Delete(Stat deletedTask)
+        {
+            // _repo.DeleteStat(deletedTask);
+
+            return RedirectToAction("Index");
+        }
+    }   
 }

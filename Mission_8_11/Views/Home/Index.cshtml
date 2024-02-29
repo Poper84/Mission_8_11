@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+@model List<Stat>
 <!DOCTYPE html>
 <html>
 <head>
@@ -95,14 +95,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == 1 && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant1" && temp.Completed == 1)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -139,14 +139,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == 2 && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant2" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -186,14 +186,14 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == 3 && temp.Completed == false)
+                                            if (temp.Quadrant == "Quadrant3" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
                                                     <td>@temp.Quadrant</td>
-                                                    <td>@temp.Category.CategoryName</td>
+                                                    <td>@temp.CategoryName</td>
                                                     <td>@temp.Completed</td>
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
@@ -218,8 +218,8 @@
                                 <table class="table table-bordered table-hover table-responsive-sm table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Job ID</th>
-                                            <th>Job Name</th>
+                                            <th>Task ID</th>
+                                            <th>Task Name</th>
                                             <th>Due Date</th>
                                             <th>Quadrant</th>
                                             <th>Category Name</th>
