@@ -28,7 +28,7 @@ namespace Mission_8_11.Controllers
         public IActionResult NewTask()
         {
             // Make a view bag for getting the categories
-            ViewBag.Categories = _repo.Categories.ToList();
+            ViewBag.Categories = _repo.Categories;
 
             // return the view with a new Stat model so the TaskId defaults to 0 for a new entry
             return View(new Stat());
@@ -51,6 +51,9 @@ namespace Mission_8_11.Controllers
         public IActionResult Edit(int id)
         {
             var recordToEdit = _repo.Stats.Single(x => x.TaskId == id);
+
+            // Make a view bag for getting the categories
+            ViewBag.Categories = _repo.Categories;
 
             return View("NewTask", recordToEdit);
         }
