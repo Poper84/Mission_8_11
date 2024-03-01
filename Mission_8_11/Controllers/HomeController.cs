@@ -1,6 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Mission_8_11.Models;
-using System.Diagnostics;
 
 namespace Mission_8_11.Controllers
 {
@@ -18,7 +18,7 @@ namespace Mission_8_11.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var tasks = _repo.Stats.ToList();
+            var tasks = _repo.GetStatsWithCategory().ToList();
 
             return View(tasks);
         }
@@ -28,7 +28,7 @@ namespace Mission_8_11.Controllers
         public IActionResult NewTask()
         {
             // Make a view bag for getting the categories
-            ViewBag.Categories = _repo.Categories.ToList();
+            ViewBag.Categories = _repo.Categories;
 
             // return the view with a new Stat model so the TaskId defaults to 0 for a new entry
             return View(new Stat());
@@ -52,6 +52,9 @@ namespace Mission_8_11.Controllers
         {
             var recordToEdit = _repo.Stats.Single(x => x.TaskId == id);
 
+            // Make a view bag for getting the categories
+            ViewBag.Categories = _repo.Categories;
+
             return View("NewTask", recordToEdit);
         }
 
@@ -59,12 +62,13 @@ namespace Mission_8_11.Controllers
         [HttpPost]
         public IActionResult Edit(Stat updatedTask)
         {
-            //_repo.EditStat(updatedTask);
+            _repo.EditStat(updatedTask);
 
             return RedirectToAction("Index");
         }
 
         // Get Action for Delete
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             var recordToDelete = _repo.Stats.Single(x => x.TaskId == id);
@@ -73,9 +77,10 @@ namespace Mission_8_11.Controllers
         }
 
         // Post action for Delete
+        [HttpPost]
         public IActionResult Delete(Stat deletedTask)
         {
-            // _repo.DeleteStat(deletedTask);
+            _repo.DeleteStat(deletedTask);
 
             return RedirectToAction("Index");
         }

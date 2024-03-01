@@ -95,7 +95,7 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant1" && temp.Completed == 0)
+                                            if (temp.Quadrant == "Quadrant1" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
@@ -139,7 +139,7 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant2" && temp.Completed == 0)
+                                            if (temp.Quadrant == "Quadrant2" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
@@ -186,7 +186,7 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant3" && temp.Completed == 0)
+                                            if (temp.Quadrant == "Quadrant3" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
@@ -230,7 +230,7 @@
                                     <tbody>
                                         @foreach (var temp in Model)
                                         {
-                                            if (temp.Quadrant == "Quadrant4" && temp.Completed == 1)
+                                            if (temp.Quadrant == "Quadrant4" && temp.Completed == false)
                                             {
                                                 <tr>
                                                     <td>@temp.TaskId</td>
