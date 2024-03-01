@@ -31,14 +31,25 @@
 
     <br />
 
-    <label asp-for="Category">Category</label>
+   <select asp-for="CategoryId">
+       <option value="">Select a Category</option>
+        <!-- Dynamically display an option for each category in the Categories table using a ViewBag -->
+        @foreach (Category c in ViewBag.Categories)
+        {
+            <option value="@c.CategoryId">@c.CategoryName</option>
+        }
+    </select>
+
+    <br />
+
+    @* <label asp-for="Category">Category</label>
     <select asp-for="Category">Category
         <option value="">Pick a Category</option>
         <option value="Home">Home</option>
         <option value="School">School</option>
         <option value="Work">Work</option>
         <option value="Church">Church</option>
-    </select>
+    </select> *@
 
     <br />
 
