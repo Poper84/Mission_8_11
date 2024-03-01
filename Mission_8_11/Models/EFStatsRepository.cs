@@ -20,6 +20,18 @@ namespace Mission_8_11.Models
             _context.SaveChanges();
         }
 
+        public void EditStat(Stat stat)
+        {
+            _context.Update(stat);
+            _context.SaveChanges();
+        }
+
+        public void DeleteStat(Stat stat)
+        {
+            _context.Stats.Remove(stat);
+            _context.SaveChanges();
+        }
+
         public IQueryable<Stat> GetStatsWithCategory()
         {
             return _context.Stats.Include(s => s.Category);

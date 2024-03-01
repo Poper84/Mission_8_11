@@ -7,5 +7,8 @@
 
         public IQueryable<Stat> GetStatsWithCategory();
         public void AddStat(Stat stat);
+
+        public void EditStat(Stat stat);
+        public void DeleteStat(Stat stat);
     }
 }
