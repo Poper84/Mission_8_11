@@ -62,9 +62,18 @@ namespace Mission_8_11.Controllers
         [HttpPost]
         public IActionResult Edit(Stat updatedTask)
         {
-            _repo.EditStat(updatedTask);
+            if (ModelState.IsValid)
+            {
+                _repo.EditStat(updatedTask);
+                
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Categories = _repo.Categories;
 
-            return RedirectToAction("Index");
+                return View("NewTask", updatedTask);
+            } 
         }
 
         // Get Action for Delete
