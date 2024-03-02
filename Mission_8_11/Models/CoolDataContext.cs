@@ -6,19 +6,24 @@ namespace Mission_8_11.Models;
 
 public partial class CoolDataContext : DbContext
 {
+    // Set up the context file
     public CoolDataContext()
     {
     }
 
+    // set up the options
     public CoolDataContext(DbContextOptions<CoolDataContext> options)
         : base(options)
     {
     }
 
+    // Have a table called Categories
     public virtual DbSet<Category> Categories { get; set; }
 
+    // Have a table called Stats
     public virtual DbSet<Stat> Stats { get; set; }
 
+    // the rest was built for us with the scaffold command.
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlite("Data Source=CoolData3.sqlite");

@@ -1,12 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<!--Call the model as a list of type Stat-->
 @model List<Stat>
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Time Management Table!</title>
+    <!-- Here is some styling for the matrix -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,8 +16,8 @@
 
         .matrix {
             border: solid 2px #000;
-            max-width: 600px;
-            margin: 20px auto;
+            max-width: auto;
+            /* margin: 20px auto; */
         }
 
         .matrix-header {
@@ -76,6 +78,8 @@
             <tr>
                 <td class="important">Important</td>
                 <td class="important urgent">
+                    <!-- HERE YOU SEE I AM USING BOOTSTRAP GRID with container, row, and col-12 ->
+                    <!-- I will comment this section, because the other 4 are the same haha -->
                     <div class="container mt-4">
                         <div class="row">
                             <div class="col-12">
@@ -83,28 +87,32 @@
                                 <table class="table table-bordered table-hover table-responsive-sm table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Task ID</th>
+                                            <!-- Set the table headers in the quadrant-->
+                                            
                                             <th>Task Name</th>
                                             <th>Due Date</th>
-                                            <th>Quadrant</th>
+                                            
                                             <th>Category Id</th>
-                                            <th>Completed</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <!-- Using razor code to dynamically add tasks to table in quadrant -->
                                         @foreach (var temp in Model)
                                         {
+                                            // If the quadrant is 1 and it is NOT completed, enter the data
                                             if (temp.Quadrant == "Quadrant1" && temp.Completed == false)
                                             {
                                                 <tr>
-                                                    <td>@temp.TaskId</td>
+                                                    
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
-                                                    <td>@temp.Quadrant</td>
+                                                    
                                                     <td>@temp.Category.CategoryName</td>
-                                                    <td>@temp.Completed</td>
+                                                    
                                                     <td>
+                                                        <!-- add buttons to edit and delete, calling those actions in the home controller -->
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                                             <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
                                                             <a class="btn btn-danger btn-sm" asp-controller="Home" asp-action="Delete" asp-route-id="@temp.TaskId">Delete</a>
@@ -127,12 +135,12 @@
                                 <table class="table table-bordered table-hover table-responsive-sm table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Task ID</th>
+                                            
                                             <th>Task Name</th>
                                             <th>Due Date</th>
-                                            <th>Quadrant</th>
+                                            
                                             <th>Category Name</th>
-                                            <th>Completed</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -142,12 +150,12 @@
                                             if (temp.Quadrant == "Quadrant2" && temp.Completed == false)
                                             {
                                                 <tr>
-                                                    <td>@temp.TaskId</td>
+                                                    
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
-                                                    <td>@temp.Quadrant</td>
+                                                    
                                                     <td>@temp.Category.CategoryName</td>
-                                                    <td>@temp.Completed</td>
+                                                    
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                                             <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
@@ -174,12 +182,12 @@
                                 <table class="table table-bordered table-hover table-responsive-sm table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Task ID</th>
+                                            
                                             <th>Task Name</th>
                                             <th>Due Date</th>
-                                            <th>Quadrant</th>
+                                            
                                             <th>Category Name</th>
-                                            <th>Completed</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -189,12 +197,12 @@
                                             if (temp.Quadrant == "Quadrant3" && temp.Completed == false)
                                             {
                                                 <tr>
-                                                    <td>@temp.TaskId</td>
+                                                    
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
-                                                    <td>@temp.Quadrant</td>
+                                                    
                                                     <td>@temp.Category.CategoryName</td>
-                                                    <td>@temp.Completed</td>
+                                                    
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                                             <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
@@ -218,12 +226,12 @@
                                 <table class="table table-bordered table-hover table-responsive-sm table-striped">
                                     <thead class="table-dark">
                                         <tr>
-                                            <th>Task ID</th>
+                                            
                                             <th>Task Name</th>
                                             <th>Due Date</th>
-                                            <th>Quadrant</th>
+                                            
                                             <th>Category Name</th>
-                                            <th>Completed</th>
+                                            
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -233,12 +241,12 @@
                                             if (temp.Quadrant == "Quadrant4" && temp.Completed == false)
                                             {
                                                 <tr>
-                                                    <td>@temp.TaskId</td>
+                                                    
                                                     <td>@temp.TaskName</td>
                                                     <td>@temp.DueDate</td>
-                                                    <td>@temp.Quadrant</td>
+                                                    
                                                     <td>@temp.Category.CategoryName</td>
-                                                    <td>@temp.Completed</td>
+                                                    
                                                     <td>
                                                         <div class="btn-group" role="group" aria-label="Action Buttons">
                                                             <a class="btn btn-info btn-sm" asp-controller="Home" asp-action="Edit" asp-route-id="@temp.TaskId">Edit</a>
