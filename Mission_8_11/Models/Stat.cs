@@ -4,8 +4,6 @@ using System.Collections.Generic;
 namespace Mission_8_11.Models;
 
 // This is the model build by scaffold command
-// Changes were made to make it use data annotations but for some reason it keeps reverting back
-// to this even if I save it. Strange... But it works so we will take it!
 public partial class Stat
 {
     public int TaskId { get; set; }
