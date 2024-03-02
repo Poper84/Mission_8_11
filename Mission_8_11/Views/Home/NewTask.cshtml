@@ -1,64 +1,62 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@*This names the website tab*@
+﻿@*This names the website tab*@
 @{
     ViewData["Title"] = "New Task";
 }
 
 @model Stat
 
-<h1>Add a New Task</h1>
-<form method="post">
-    <input type="hidden" asp-for="TaskId" />
+<div class="text-center">
+    <h1>Add a New Task</h1>
+    <form method="post">
+        <input type="hidden" asp-for="TaskId" />
 
-    <!-- New Task input fields-->
-    <label asp-for="TaskName">Task:</label>
-    <input asp-for="TaskName" />
+        <!-- New Task input fields-->
+        <label asp-for="TaskName">Task:</label>
+        <input asp-for="TaskName" />
 
-    <br />
+        <br />
 
-    <label asp-for="DueDate">Due Date:</label>
-    <input type="date" asp-for="DueDate" />
+        <label asp-for="DueDate">Due Date:</label>
+        <input type="date" asp-for="DueDate" />
 
-    <br />
+        <br />
 
-    <label asp-fpr="Quadrant">Quadrant</label>
-    <select asp-for="Quadrant">
-        <option value="">Pick a Quadrant</option>
-        <option value="Quadrant1">Quadrant 1</option>
-        <option value="Quadrant2">Quadrant 2</option>
-        <option value="Quadrant3">Quadrant 3</option>
-        <option value="Quadrant4">Quadrant 4</option>
-    </select>
+        <label asp-fpr="Quadrant">Quadrant</label>
+        <select asp-for="Quadrant">
+            <option value="">Pick a Quadrant</option>
+            <option value="Quadrant1">Quadrant 1</option>
+            <option value="Quadrant2">Quadrant 2</option>
+            <option value="Quadrant3">Quadrant 3</option>
+            <option value="Quadrant4">Quadrant 4</option>
+        </select>
 
-    <br />
+        <br />
 
-    <label asp-for="CategoryId">Category</label>
-    <select asp-for="CategoryId">
-       <option value="">Select a Category</option>
-        <!-- Dynamically display an option for each category in the Categories table using a ViewBag -->
-        @foreach (Category c in ViewBag.Categories)
-        {
-            <option value="@c.CategoryId">@c.CategoryName</option>
-        }
-    </select>
+        <label asp-for="CategoryId">Category</label>
+        <select asp-for="CategoryId">
+           <option value="">Select a Category</option>
+            <!-- Dynamically display an option for each category in the Categories table using a ViewBag -->
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
 
-    <br />
+        <br />
 
-    <br />
+        <br />
 
-    <label asp-for="Completed">Did you complete this task?</label>
-    <select asp-for="Completed">Completed
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-    </select>
+        <label asp-for="Completed">Did you complete this task?</label>
+        <select asp-for="Completed">Completed
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
     
-    <br />
+        <br />
 
-    <button type="submit">Submit</button>
-       
-        
+        <button type="submit">Submit</button>
 
-</form>
+        <!-- Put the validation summary -->
+        <div asp-validation-summary="All"></div>
+    </form>
+</div>

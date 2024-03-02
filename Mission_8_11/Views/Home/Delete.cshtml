@@ -1,21 +1,19 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-@*This names the website tab*@
+﻿@*This names the website tab*@
 @{
     ViewData["Title"] = "Delete";
 }
 
 @model Stat
 
-<h2>Confirm Deletion</h2>
+<div class="text-center">
+    <h2>Confirm Deletion</h2>
 
-<form method="post">
+    <form method="post">
 
-    <input type="hidden" asp-for="TaskId" />
+        <input type="hidden" asp-for="TaskId" />
 
-    <button type="submit" class="btn btn-danger">Delete</button>
-    <!-- add this line of code when I know the name of Eliza's page-->
-    <!-- <a class="btn btn-info" asp-controller="Home" asp-action="this_needs_to_be_the_name_of_Eliza's_master_list'">Cancel</a> -->
-</form>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <!-- add this line of code when I know the name of Eliza's page-->
+        <a class="btn btn-info" asp-controller="Home" asp-action="Index">Cancel</a>
+    </form>
+</div>

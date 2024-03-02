@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Mission_8_11.Models;
 
+// Another model made by scaffold that often reverts when we try to change, but it works great!
 public partial class Category
 {
     public int CategoryId { get; set; }
